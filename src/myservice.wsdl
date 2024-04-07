@@ -1,0 +1,37 @@
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:tns="http://example.com/wsdl"
+    name="MyService"
+    targetNamespace="http://example.com/wsdl">
+    <message name="MyFunctionRequest">
+        <part name="arg1" type="xsd:int"/>
+        <part name="arg2" type="xsd:int"/>
+    </message>
+    <message name="MyFunctionResponse">
+        <part name="result" type="xsd:int"/>
+    </message>
+    <portType name="MyPort">
+        <operation name="MyFunction">
+            <input message="tns:MyFunctionRequest"/>
+            <output message="tns:MyFunctionResponse"/>
+        </operation>
+    </portType>
+    <binding name="MyPortBinding" type="tns:MyPort">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="MyFunction">
+            <soap:operation soapAction="urn:MyFunction"/>
+            <input>
+                <soap:body use="encoded" namespace="urn:examples:MyService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" namespace="urn:examples:MyService" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="MyService">
+        <port name="MyPort" binding="tns:MyPortBinding">
+            <soap:address location="http://localhost:8000/soap"/>
+        </port>
+    </service>
+</definitions>
