@@ -1,9 +1,9 @@
 <definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    xmlns:tns="http://example.com/wsdl"
+    xmlns:tns="http://example.com/soap"
     name="MyService"
-    targetNamespace="http://example.com/wsdl">
+    targetNamespace="http://example.com/soap">
     <message name="MyFunctionRequest">
         <part name="arg1" type="xsd:int"/>
         <part name="arg2" type="xsd:int"/>
